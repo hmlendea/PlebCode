@@ -28,19 +28,19 @@ PlebCode is an esoteric programming language that is easy enough to allow any pl
 * declaration = type, identifier;
 * type = simple | composite;
 * simple = “Integer” | “Float”;
-* composite = “Array”, simple, “ ”, digit;
+* composite = “Array”, simple, “ ”, (Integer | identifier);
 
 * instructions = {instruction};
 * instruction = (simple_instruction | compound_instruction);
 
 * simple_instruction = assignment | IO_instruction
-* assignment = “Set”, identifier, "(", expression, ")" | constant | identifier
+* assignment = “Set”, identifier, ("(", expression, ")" | constant | identifier)
 * constant =  nr_integer | nr_real
 * nr_real = [ "-" ], digit, { "0" | digit };
 * nr_integer = [ "-" ], (“0” | digit), { "0" | digit }, “.”, { "0" | digit },  digit
 * expression  = operand, ("+"|"-"|"*"|"/"), operand, {("+"|"-"|"*"|"/"), operand} |  operand
 * operand =  nr_integer | nr_real | identifier
-* IO_instruction = ("Input" | "Output"), identifier, {identifier}
+* IO_instruction = ("Input" | "Output"), identifier, (identifier | expression)
 
 * composite_instruction = if_instruction | while_instruction
 
