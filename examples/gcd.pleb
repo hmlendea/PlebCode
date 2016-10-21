@@ -1,0 +1,13 @@
+Function GCD ( )
+    int a
+    int b
+    int gcd
+    
+    While a != b
+        If a > b
+            Output (a - b)
+        Else
+            Output (b - a)
+        EndIf
+    EndWhile
+EndFunction

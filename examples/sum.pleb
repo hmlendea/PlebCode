@@ -1,0 +1,24 @@
+int i
+int s
+int n
+int j
+Array int v[]
+
+Input n
+
+Set s 0
+Set i 0
+
+While i < n
+	Input v[i]
+	Set i (i + 1)
+EnWhile
+
+Set j 0
+
+While j < n
+	Set s (s + v[j])
+EndWhile
+
+Output s
+

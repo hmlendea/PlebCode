@@ -1,0 +1,13 @@
+float perimeter
+float aria
+float radius
+float pi
+
+Set pi 3.14
+Input raza
+
+Set perimeter (2 * pi * radius)
+Set aria (pi * radius ^ 2)
+
+Output perimeter
+Output aria
