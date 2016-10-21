@@ -1,10 +1,11 @@
-int i
-int s
-int n
-int j
-Array int v[]
+Integer i
+Integer s
+Integer n
+Integer j
 
 Input n
+
+Array Integer v n
 
 Set s 0
 Set i 0

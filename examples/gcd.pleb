@@ -1,7 +1,7 @@
 Function GCD ( )
-    int a
-    int b
-    int gcd
+    Integer a
+    Integer b
+    Integer gcd
     
     While a != b
         If a > b
@@ -11,3 +11,4 @@ Function GCD ( )
         EndIf
     EndWhile
 EndFunction
+
