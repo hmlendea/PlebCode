@@ -5,11 +5,11 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle ("PlebCodeCompiler")]
-[assembly: AssemblyDescription ("")]
+[assembly: AssemblyDescription ("Compiler for the PlebCode language")]
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("horatiu")]
+[assembly: AssemblyCopyright ("Horatiu Mlendea")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 
