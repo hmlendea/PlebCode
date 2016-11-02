@@ -1,0 +1,27 @@
+{
+  "name": "pleb-parser",
+  "version": "1.0.0-*",
+  "description": "PlebCode parser",
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true
+  },
+  "dependencies": {},
+  "frameworks": {
+    "netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0-preview1-001100-00"
+        }
+      },
+      "imports": "dnxcore50"
+    }
+  },
+  "author": "Horațiu Mlendea",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/HoratiuMl/PlebCode/issues"
+  },
+  "homepage": "https://github.com/HoratiuMl/PlebCode#readme"
+}
