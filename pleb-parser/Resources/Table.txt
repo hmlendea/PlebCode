@@ -1,0 +1,30 @@
+0 Identifier
+1 Constant
+
+100 Function
+101 EndFunction
+
+200 If
+201 EndIf
+202 Else
+203 ElseIf
+204 While
+205 EndWhile
+
+300 Input
+301 Output
+
+1000 Integer
+1001 Float
+
+2000 +
+2001 -
+2002 *
+2003 /
+
+2020 <
+2021 >
+2022 =
+2023 <=
+2024 >=
+2025 !=
