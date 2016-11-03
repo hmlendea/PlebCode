@@ -2,8 +2,8 @@ namespace PlebCode.Parser.Entities
 {
     public class Atom
     {
-        protected int Code { get; set; }
-        protected int PositionOfIdentifier { get; set; }
+        public int Code { get; set; }
+        public int PositionOfIdentifier { get; set; }
 
         public Atom()
         {
