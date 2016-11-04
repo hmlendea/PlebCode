@@ -47,6 +47,10 @@ namespace PlebCode.Parser
                         if (identifier.Name == atomName)
                         {
                             isIdentifier = true;
+
+                            if (identifier.Name.Length > 250)
+                                throw new PlebCode.Parser.Exceptions.InvalidSyntaxException("Max identif. len 250");
+
                             FIP.Add(identifier);
                             break;
                         }

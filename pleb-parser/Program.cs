@@ -38,7 +38,9 @@ namespace PlebCode.Parser
 
                 Console.WriteLine("===> The FIP:");
                 foreach (Atom atom in resolver.FIP)
-                    Console.WriteLine(atom);
+                {
+                    Console.WriteLine(atom.Code + " - " + atom.PositionOfIdentifier);
+                }
             }
             catch (InvalidSyntaxException ex)
             {
@@ -51,7 +53,16 @@ namespace PlebCode.Parser
             List<string> atoms = new List<string>();
             StreamReader sr = new StreamReader(File.OpenRead(filePath));
 
-            atoms = sr.ReadToEnd().Split(' ').ToList();
+            while (!sr.EndOfStream)
+            {
+                string line = sr.ReadLine();
+                string[] elements = line.Trim().Split(' ');
+
+                foreach (string element in elements)
+                    if (!string.IsNullOrWhiteSpace(element))
+                        atoms.Add(element);
+            }
+
             return atoms;
         }
 
