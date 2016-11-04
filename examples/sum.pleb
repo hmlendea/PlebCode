@@ -11,14 +11,14 @@ Set s 0
 Set i 0
 
 While i < n
-	Input v[i]
-	Set i (i + 1)
+	Input v [ i ]
+	Set i ( i + 1 )
 EnWhile
 
 Set j 0
 
 While j < n
-	Set s (s + v[j])
+	Set s ( s + v [ j ] )
 EndWhile
 
 Output s

@@ -5,9 +5,9 @@ Function GCD ( )
     
     While a != b
         If a > b
-            Output (a - b)
+            Output ( a - b )
         Else
-            Output (b - a)
+            Output ( b - a )
         EndIf
     EndWhile
 EndFunction
