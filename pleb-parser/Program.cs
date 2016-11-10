@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
+using PlebCode.Infrastructure.Collections;
 using PlebCode.Infrastructure.Exceptions;
 using PlebCode.Parser.Entities;
 
@@ -27,19 +28,12 @@ namespace PlebCode.Parser
             {
                 resolver.BuildFIPandST();
 
-                Console.WriteLine("===> The symbols table for identifiers:");
-                foreach (Identifier identifier in resolver.Identifiers)
-                    Console.WriteLine(identifier);
-
-                Console.WriteLine("===> The symbols table for constants:");
-                foreach (Constant constant in resolver.Constants)
-                    Console.WriteLine(constant);
+                PrintIdentifiers(resolver.Identifiers);
+                PrintConstants(resolver.Constants);
 
                 Console.WriteLine("===> The FIP:");
                 foreach (Atom atom in resolver.FIP)
-                {
                     Console.WriteLine(atom.Code + " - " + atom.PositionOfIdentifier);
-                }
             }
             catch (InvalidSyntaxException ex)
             {
@@ -88,6 +82,32 @@ namespace PlebCode.Parser
             }
 
             return table;
+        }
+
+        static void PrintIdentifiers(BinarySearchTree<Identifier> identifiers)
+        {
+            BinarySearchTreeIterator<Identifier> iterator = identifiers.CreateIterator();
+
+            Console.WriteLine("===> The symbols table for identifiers:");
+
+            while (iterator.Valid)
+            {
+                Console.WriteLine(iterator.CurrentElement);
+                iterator.Next();
+            }
+        }
+
+        static void PrintConstants(BinarySearchTree<Constant> constants)
+        {
+            BinarySearchTreeIterator<Constant> iterator = constants.CreateIterator();
+
+            Console.WriteLine("===> The symbols table for constants:");
+
+            while (iterator.Valid)
+            {
+                Console.WriteLine(iterator.CurrentElement);
+                iterator.Next();
+            }
         }
     }
 }

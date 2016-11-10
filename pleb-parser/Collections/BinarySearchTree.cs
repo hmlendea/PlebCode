@@ -22,7 +22,7 @@ namespace PlebCode.Infrastructure.Collections
             Count = 0;
         }
 
-        public void Insert(T el)
+        public void Add(T el)
         {
             BinarySearchTreeNode<T> node = new BinarySearchTreeNode<T>(el);
 

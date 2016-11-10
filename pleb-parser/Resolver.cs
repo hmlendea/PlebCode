@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
+using PlebCode.Infrastructure.Collections;
 using PlebCode.Infrastructure.Exceptions;
 using PlebCode.Parser.Entities;
 
@@ -15,8 +16,8 @@ namespace PlebCode.Parser
         readonly Dictionary<string, int> converter;
 
         public List<Atom> FIP { get; private set; }
-        public List<Identifier> Identifiers { get; private set; }
-        public List<Constant> Constants { get; private set; }
+        public BinarySearchTree<Identifier> Identifiers { get; private set; }
+        public BinarySearchTree<Constant> Constants { get; private set; }
 
         public Resolver(List<string> atoms, Dictionary<string, int> converter)
         {
@@ -27,8 +28,8 @@ namespace PlebCode.Parser
         public void BuildFIPandST()
         {
             FIP = new List<Atom>();
-            Identifiers = new List<Identifier>();
-            Constants = new List<Constant>();
+            Identifiers = new BinarySearchTree<Identifier>();
+            Constants = new BinarySearchTree<Constant>();
 
             foreach (string atomName in atoms)
             {
@@ -40,11 +41,18 @@ namespace PlebCode.Parser
                 }
                 else
                 {
+                    BinarySearchTreeIterator<Identifier> identifierIterator;
+                    BinarySearchTreeIterator<Constant> constantIterator;
+                    
                     // TODO: Maybe have an enum (AtomType or something?)
                     bool isIdentifier = false;
                     bool isConstant = false;
 
-                    foreach (Identifier identifier in Identifiers)
+                    identifierIterator = Identifiers.CreateIterator();
+                    while (identifierIterator.Valid)
+                    {
+                        Identifier identifier = identifierIterator.CurrentElement;
+
                         if (identifier.Name == atomName)
                         {
                             isIdentifier = true;
@@ -56,15 +64,31 @@ namespace PlebCode.Parser
                             break;
                         }
 
+                        identifierIterator.Next();
+                    }
+
                     if (!isIdentifier)
                     {
-                        foreach (Constant constant in Constants)
-                            if (constant.Name == atomName)
+                        identifierIterator = Identifiers.CreateIterator();
+                        while (identifierIterator.Valid)
+                        {
+                            constantIterator = Constants.CreateIterator();
+                            while (constantIterator.Valid)
                             {
-                                isConstant = true;
-                                FIP.Add(constant);
-                                break;
+                                Constant constant = constantIterator.CurrentElement;
+
+                                if (constant.Name == atomName)
+                                {
+                                    isConstant = true;
+                                    FIP.Add(constant);
+                                    break;
+                                }
+
+                                constantIterator.Next();
                             }
+
+                            identifierIterator.Next();
+                        }
 
                         if (!isConstant)
                             AddConstantOrIdentifier(atomName);
@@ -95,29 +119,31 @@ namespace PlebCode.Parser
 
         void SortSymbolTable()
         {
-            List<Identifier> symbolsTableIdentifiers = Identifiers;
-            List<Constant> symbolsTableConstants = Constants;
+            BinarySearchTreeIterator<Identifier> identifierIterator = Identifiers.CreateIterator();
+            BinarySearchTreeIterator<Constant> constantIterator = Constants.CreateIterator();
 
             int index;
 
-            symbolsTableIdentifiers.Sort((identifier1, identifier2) =>
-                identifier1.Name.CompareTo(identifier2.Name));
-
-            symbolsTableConstants.Sort((constant1, constant2) =>
-                constant1.Name.CompareTo(constant2.Name));
-
             index = 0;
-            foreach (Atom identifier in symbolsTableIdentifiers)
+            while (identifierIterator.Valid)
             {
+                Identifier identifier = identifierIterator.CurrentElement;
+
                 identifier.PositionOfIdentifier = index;
                 index += 1;
+
+                identifierIterator.Next();
             }
 
             index = 0;
-            foreach (Atom constant in symbolsTableConstants)
+            while (constantIterator.Valid)
             {
+                Constant constant = constantIterator.CurrentElement;
+
                 constant.PositionOfIdentifier = index;
                 index += 1;
+
+                constantIterator.Next();
             }
         }
     }
