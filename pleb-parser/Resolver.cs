@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
+using PlebCode.Infrastructure.Exceptions;
 using PlebCode.Parser.Entities;
 
 namespace PlebCode.Parser
@@ -43,21 +44,21 @@ namespace PlebCode.Parser
                     bool isIdentifier = false;
                     bool isConstant = false;
 
-                    foreach(Identifier identifier in Identifiers)
+                    foreach (Identifier identifier in Identifiers)
                         if (identifier.Name == atomName)
                         {
                             isIdentifier = true;
 
                             if (identifier.Name.Length > 250)
-                                throw new PlebCode.Parser.Exceptions.InvalidSyntaxException("Max identif. len 250");
+                                throw new InvalidSyntaxException("Max identif. len 250");
 
                             FIP.Add(identifier);
                             break;
                         }
-                    
-                    if(!isIdentifier)
+
+                    if (!isIdentifier)
                     {
-                        foreach(Constant constant in Constants)
+                        foreach (Constant constant in Constants)
                             if (constant.Name == atomName)
                             {
                                 isConstant = true;

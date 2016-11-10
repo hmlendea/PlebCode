@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
+using PlebCode.Infrastructure.Exceptions;
 using PlebCode.Parser.Entities;
-using PlebCode.Parser.Exceptions;
 
 namespace PlebCode.Parser
 {
@@ -15,7 +14,7 @@ namespace PlebCode.Parser
             // TODO: Proper handling
             if (args.Length == 0)
                 return;
-            
+
             // TODO: Check path validity
             string fileName = args[0];
 
@@ -23,7 +22,7 @@ namespace PlebCode.Parser
             Dictionary<string, int> converter = GetConverter();
 
             Resolver resolver = new Resolver(atoms, converter);
-            
+
             try
             {
                 resolver.BuildFIPandST();
@@ -31,7 +30,7 @@ namespace PlebCode.Parser
                 Console.WriteLine("===> The symbols table for identifiers:");
                 foreach (Identifier identifier in resolver.Identifiers)
                     Console.WriteLine(identifier);
-                
+
                 Console.WriteLine("===> The symbols table for constants:");
                 foreach (Constant constant in resolver.Constants)
                     Console.WriteLine(constant);

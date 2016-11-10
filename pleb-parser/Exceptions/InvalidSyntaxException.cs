@@ -1,6 +1,6 @@
 using System;
 
-namespace PlebCode.Parser.Exceptions
+namespace PlebCode.Infrastructure.Exceptions
 {
     public class InvalidSyntaxException : Exception
     {

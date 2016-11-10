@@ -19,7 +19,7 @@ namespace PlebCode.Parser.Entities
             Code = code;
             PositionOfIdentifier = positionOfIdentifier;
         }
-        
+
         public override string ToString()
         {
             return string.Format("{0} - {1}", Code, PositionOfIdentifier);

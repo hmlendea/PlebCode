@@ -1,6 +1,6 @@
 using System;
 
-namespace PlebCodeParser.Exceptions
+namespace PlebCode.Infrastructure.Exceptions
 {
     public class UnknownIdentifierException : Exception
     {
