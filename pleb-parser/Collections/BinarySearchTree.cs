@@ -2,12 +2,23 @@ using System;
 
 namespace PlebCode.Infrastructure.Collections
 {
+    /// <summary>
+    /// Self-balancing Binary Search Tree
+    /// </summary>
     public class BinarySearchTree<T> where T : IComparable<T>
     {
         internal BinarySearchTreeNode<T> root;
 
+        /// <summary>
+        /// Gets the number of nodes.
+        /// </summary>
+        /// <returns>The node count</returns>
         protected int Count { get; private set; }
 
+        /// <summary>
+        /// Checks wether the tree is empty
+        /// </summary>
+        /// <returns>True if empty, false otherwise.</returns>
         public bool Empty
         {
             get
@@ -16,12 +27,19 @@ namespace PlebCode.Infrastructure.Collections
             }
         }
 
+        /// <summary>
+        /// Initializes a new Binary Search Tre
+        /// </summary>
         public BinarySearchTree()
         {
             root = null;
             Count = 0;
         }
 
+        /// <summary>
+        /// Inserts a new element in the tree
+        /// </summary>
+        /// <param name="el">Element</param>
         public void Add(T el)
         {
             BinarySearchTreeNode<T> node = new BinarySearchTreeNode<T>(el);
@@ -34,6 +52,11 @@ namespace PlebCode.Infrastructure.Collections
             Count += 1;
         }
 
+        /// <summary>
+        /// Inserts a node as a child of another node
+        /// </summary>
+        /// <param name="parent">Parent</param>
+        /// <param name="node">Inserted node</param>
         private void InsertNode(BinarySearchTreeNode<T> parent, BinarySearchTreeNode<T> node)
         {
             if (node.Element.CompareTo(parent.Element) < 0)
@@ -58,6 +81,10 @@ namespace PlebCode.Infrastructure.Collections
             }
         }
 
+        /// <summary>
+        /// Removes a element from the tree
+        /// </summary>
+        /// <param name="el">Element</param>
         public virtual void Remove(T el)
         {
             BinarySearchTreeNode<T> node = SearchElement_Rec(el, root);
@@ -141,6 +168,12 @@ namespace PlebCode.Infrastructure.Collections
             }
         }
 
+        /// <summary>
+        /// Recursively searches for a node in the tree
+        /// </summary>
+        /// <param name="el"></param>
+        /// <param name="root"></param>
+        /// <returns></returns>
         private BinarySearchTreeNode<T> SearchElement_Rec(T el, BinarySearchTreeNode<T> root)
         {
             BinarySearchTreeNode<T> node = root;
@@ -156,12 +189,20 @@ namespace PlebCode.Infrastructure.Collections
                 return SearchElement_Rec(el, node.ChildRight);                       
         }
 
+        /// <summary>
+        /// Empties the tree
+        /// </summary>
         public virtual void Clear()
         {
             root = null;
             Count = 0;
         }
 
+        /// <summary>
+        /// Checks wether the tree contains a certain element
+        /// </summary>
+        /// <param name="el">Element</param>
+        /// <returns>True if element is contained, false otherwise</returns>
         public bool Contains(T el)
         {
             if (SearchElement_Rec(el, root) != null)
@@ -169,6 +210,10 @@ namespace PlebCode.Infrastructure.Collections
             return false;
         }
 
+        /// <summary>
+        /// Creates an PlebCode.Infrastructure.Collections.BinarySearchTreeIterator<T> for the tree
+        /// </summary>
+        /// <returns>The iterator</returns>
         public BinarySearchTreeIterator<T> CreateIterator()
         {
             return new BinarySearchTreeIterator<T>(root);

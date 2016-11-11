@@ -6,6 +6,10 @@ namespace PlebCode.Infrastructure.Collections
     {
         private BinarySearchTreeNode<T> currentNode;
 
+        /// <summary>
+        /// Gets the current element
+        /// </summary>
+        /// <returns>The current element</returns>
         public T CurrentElement
         {
             get
@@ -14,6 +18,10 @@ namespace PlebCode.Infrastructure.Collections
             }
         }
 
+        /// <summary>
+        /// Checks wether the current node is valid
+        /// </summary>
+        /// <returns>True if node is valid, false otherwise</returns>
         public bool Valid
         {
             get
@@ -22,11 +30,18 @@ namespace PlebCode.Infrastructure.Collections
             }
         }
 
+        /// <summary>
+        /// Initializes a new PlebCode.Infrastructure.Collections.BinarySearchTreeIterator<T>
+        /// </summary>
+        /// <param name="root">The root node</param>
         public BinarySearchTreeIterator(BinarySearchTreeNode<T> root)
         {
             this.currentNode = GetMinimum(root);
         }
 
+        /// <summary>
+        /// Goes to the next node in the tree
+        /// </summary>
         public void Next()
         {
             if (currentNode.ChildRight != null)
@@ -47,6 +62,9 @@ namespace PlebCode.Infrastructure.Collections
             currentNode = y;
         }
 
+        /// <summary>
+        /// Goes to the previous element in the tree
+        /// </summary>
         public void Previous()
         {
             if (currentNode.ChildLeft != null)
@@ -67,6 +85,11 @@ namespace PlebCode.Infrastructure.Collections
             currentNode = y;
         }
 
+        /// <summary>
+        /// Gets the minimum element in the tree
+        /// </summary>
+        /// <param name="root">The root node</param>
+        /// <returns>The minimum element</returns>
         private BinarySearchTreeNode<T> GetMinimum(BinarySearchTreeNode<T> root)
         {
             if (root == null)
@@ -78,6 +101,11 @@ namespace PlebCode.Infrastructure.Collections
             return root;
         }
 
+        /// <summary>
+        /// Gets the maximum element in the tree
+        /// </summary>
+        /// <param name="root">The root node</param>
+        /// <returns>The maximum element</returns>
         private BinarySearchTreeNode<T> GetMaximum(BinarySearchTreeNode<T> root)
         {
             if (root == null)
