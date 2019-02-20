@@ -1,3 +1,7 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+This was a homework project. I have no intention of finishing or continuing this project.
+
 # About
 PlebCode is an esoteric programming language that is easy enough to allow any pleb to write simple code.
 
